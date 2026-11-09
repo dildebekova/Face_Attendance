@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: campus
+      POSTGRES_USER: campus
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Run init_config.py}
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U campus"]
+      interval: 5s
+      retries: 20
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://campus:${DB_PASSWORD}@db/campus
+      ADMIN_KEY: ${ADMIN_KEY}
+      EMBEDDING_KEY: ${EMBEDDING_KEY}
+      MATCH_THRESHOLD: ${MATCH_THRESHOLD:-0.55}
+      MATCH_MARGIN: ${MATCH_MARGIN:-0.08}
+      PAD_THRESHOLD: ${PAD_THRESHOLD:-0.85}
+      ENABLE_LIVENESS: ${ENABLE_LIVENESS:-0}
+    volumes: ["./models:/models:ro", "./vendor:/vendor:ro"]
+    depends_on:
+      db:
+        condition: service_healthy
+  web:
+    build: ./frontend
+    ports: ["127.0.0.1:8080:80"]
+    depends_on: [backend]
+volumes:
+  pgdata:

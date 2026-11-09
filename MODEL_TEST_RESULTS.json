@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "test_type": "real model execution on static public sample, not physical camera or accuracy test",
+  "python": "3.12.14",
+  "versions": {
+    "insightface": "0.7.3",
+    "onnxruntime": "1.21.1",
+    "mediapipe": "0.10.21",
+    "torch": "2.6.0+cpu",
+    "numpy": "1.26.4"
+  },
+  "providers": [
+    "AzureExecutionProvider",
+    "CPUExecutionProvider"
+  ],
+  "sample_results": {
+    "faces": 1,
+    "landmarks_detected": true,
+    "width": 512,
+    "height": 512,
+    "attendance_written": false,
+    "embedding_dimensions": 512,
+    "pad_live_score": 0.836,
+    "pad_pass": false,
+    "brightness": 156.8,
+    "sharpness": 948.1,
+    "detail": "Проверка PAD на этом кадре не пройдена. Для отметки нужна отдельная проверка с поворотом головы.",
+    "elapsed_ms": 320
+  },
+  "same_image_cosine": 1.0,
+  "blank_rejected": true,
+  "total_seconds": 9.45,
+  "physical_camera_tested": false,
+  "face_id_equivalence": false
+}

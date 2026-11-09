@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "server": "FastAPI ASGI TestClient + real models",
+  "database": "SQLite temporary integration database; PostgreSQL not tested here",
+  "health": 200,
+  "camera_check": {
+    "faces": 1,
+    "landmarks_detected": true,
+    "width": 512,
+    "height": 512,
+    "attendance_written": false,
+    "embedding_dimensions": 512,
+    "pad_live_score": 0.836,
+    "pad_pass": false,
+    "brightness": 156.8,
+    "sharpness": 948.1,
+    "detail": "Проверка PAD на этом кадре не пройдена. Для отметки нужна отдельная проверка с поворотом головы.",
+    "elapsed_ms": 834
+  },
+  "static_sequence_http_status": 422,
+  "static_sequence_detail": "Подойдите ближе к камере",
+  "attendance_after_rejection": 0,
+  "physical_camera_tested": false
+}
